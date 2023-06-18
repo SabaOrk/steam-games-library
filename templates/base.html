@@ -49,6 +49,12 @@
         <a href="{{ url_for('index') }}">FlaskApp</a>
         <a href="/search">Search</a>
         <a href="/about">About</a>
+        {% if current_user.is_authenticated %}
+        <h1>{{current_user.username}}</h1>
+        {% else %}
+        <h1>{{current_user.username}}</h1>
+        {% endif %}     
+        <a href="/logout">Log Out</a>
     </nav>
     <hr>
     <div class="content">
