@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from flask_login import LoginManager, UserMixin, login_user, logout_user
@@ -101,7 +101,10 @@ def login():
         if user.password == request.form.get("password"):
             # Use the login_user method to log in the user
             login_user(user)
+            flash('You were successfully logged in')
             return redirect(url_for("index"))
+        else:
+            flash('Invalid username or password')
         # Redirect the user back to the home
         # (we'll create the home route in a moment)
     return render_template("login.html")
