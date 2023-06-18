@@ -27,15 +27,8 @@ class Users(UserMixin, db.Model):
     password = db.Column(db.String(250),
                          nullable=False)
 
-# Initialize app with extensions
-
-
-with app.app_context():
-    db.create_all()
 
 # Creates a user loader callback that returns the user object given an id
-
-
 @login_manager.user_loader
 def loader_user(user_id):
     return Users.query.get(user_id)
@@ -45,13 +38,16 @@ class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     price = db.Column(db.String(100), nullable=False)
-    release_date = db.Column(db.String(80), nullable=False)
+    release = db.Column(db.String(80), nullable=False)
     link = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True),
-                           server_default=func.now())
+    image = db.Column(db.String(255), nullable=False)
 
     def __repr__(self):
         return f'<Title {self.title}>'
+
+
+with app.app_context():
+    db.create_all()
 
 
 """

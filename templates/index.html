@@ -9,8 +9,9 @@
                     <b>
                         <p class="name">{{ game.title }}</p>
                     </b>
+                    <img src="{{ game.image }}" alt="image">
                     <p>{{ game.price }}</p>
-                    <p>{{ game.release_data }}</p>
+                    <p>{{ game.release }}</p>
                     <a target="_blank" href={{ game.link }}>Link</a>
                     <p>Joined: {{ game.created_at }}</p>
                 </div>

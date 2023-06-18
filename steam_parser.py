@@ -13,7 +13,7 @@ head = {'cookie': f'sessionid={session_id}'}
 
 
 data = []
-for i in range(1, 20):
+for i in range(1, 50):
 
     link = 'https://store.steampowered.com/search/results'
     param = {
@@ -40,11 +40,14 @@ for i in range(1, 20):
         if release == '':
             release = 'none'
 
+        image = i.find('div', 'col search_capsule').find('img')['src']
+
         item = {
             'title': title,
             'price': price,
             'release': release,
-            'link': url
+            'link': url,
+            'image': image
         }
         data.append(item)
     time.sleep(1)
@@ -56,13 +59,13 @@ for i in range(1, 20):
 
 conn = sqlite3.connect('db.sqlite')
 c = conn.cursor()
-# c.execute('''CREATE TABLE games
-#              (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT, release TEXT, link TEXT)''')
+# c.execute('''CREATE TABLE game
+#              (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, price TEXT, release TEXT, link TEXT, image TEXT)''')
 # conn.commit()
 
 for game in data:
-    c.execute("INSERT INTO game (title, price, release_date, link) VALUES (?, ?, ?, ?)",
-              (game['title'], game['price'], game['release'], game['link']))
+    c.execute("INSERT INTO game (title, price, release, link, image) VALUES (?, ?, ?, ?, ?)",
+              (game['title'], game['price'], game['release'], game['link'], game['image']))
 
 conn.commit()
 conn.close()
