@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} Games {% endblock %}</h1>
+    <div class="content">
+        {% for game in games %}
+            <a href="/game/{{game.id}}">
+                <div class="game">
+                    <b>
+                        <p class="name">{{ game.title }}</p>
+                    </b>
+                    <p>{{ game.price }}</p>
+                    <p>{{ game.release_data }}</p>
+                    <a target="_blank" href={{ game.link }}>Link</a>
+                    <p>Joined: {{ game.created_at }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
