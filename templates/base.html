@@ -4,24 +4,48 @@
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}Steam Library</title>
     <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         .title {
             margin: 5px;
+            padding-left: 1vw;
+            font-size: 3rem;
         }
 
         .content {
-            margin: 5px;
             width: 100%;
+            gap: 1.2vw;
             display: flex;
-            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
         .game {
-            flex: 20%;
-            padding: 10px;
-            margin: 5px;
+            display: flex;
+            width: 20%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: .4vw;
             background-color: #f3f3f3;
-            inline-size: 100%;
+            gap: .5vw;
+            box-shadow: 0 0 7px rgba(74, 77, 83, 0.5);
+            border-radius: 10px;
+        }
+
+        .game img {
+            width: 100%;
+            height: 7vw;
+            object-fit: contain;
+            border-radius: 10px;
         }
 
         .bio {
@@ -36,19 +60,35 @@
             text-decoration: none;
         }
 
+        nav {
+            border: none;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            padding-inline: 7.6vw;
+            box-shadow: 0 7px 10px -10px rgba(0, 0, 0, 0.5);
+            padding-block: .5vw;
+        }
+
         nav a {
             color: #d64161;
             font-size: 3em;
-            margin-left: 50px;
             text-decoration: none;
+        }
+
+        p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">FlaskApp</a>
-        <a href="/search">Search</a>
-        <a href="/about">About</a>
+        <div style="display: flex; align-items: center; gap: 2vw;">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="/search">Search</a>
+            <a href="/about">About</a>
+        </div>
         {% if current_user.is_authenticated %}
         <h1>{{current_user.username}}</h1>
         {% else %}
@@ -56,7 +96,6 @@
         {% endif %}     
         <a href="/logout">Log Out</a>
     </nav>
-    <hr>
     <div class="content">
         {% block content %} {% endblock %}
     </div>

@@ -1,1 +1,20 @@
-{{game.title}}
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1vw; width: 100vw;">
+    <div style="display: flex; width: 50%; justify-content: flex-start;">
+        <button onclick="window.history.go(-1);" style="background-color: blueviolet; border-radius:
+         5px; padding-block: 8px; padding-inline: 16px;
+         color: white; border: none;">Back</button>
+    </div>
+    <img src="{{game.image}}" alt="image" style="width: 50%;">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 50%;">
+        <h1 style="margin: 0;">{{game.title}}</h1>
+        <p style="margin: 0;">{{game.price}}</p>
+    </div>
+
+    <p>{{game.release}}</p>
+    <!-- <p>{{game.description}}</p>
+    <p>{{game.developer}}</p>
+    <p>{{game.publisher}}</p>
+    <p>{{game.genre}}</p>
+    <p>{{game.platform}}</p>
+    <p>{{game.rating}}</p> -->
+</div>
