@@ -86,17 +86,18 @@
     <nav>
         <div style="display: flex; align-items: center; gap: 2vw;">
             <a href="{{ url_for('index') }}">Home</a>
-            <a href="/search">Search</a>
             <a href="/about">About</a>
         </div>
-        {% if current_user.is_authenticated %}
-        <h1>{{current_user.username}}</h1>
-        {% else %}
-        <h1>{{current_user.username}}</h1>
-        {% endif %}     
-        <a href="/logout">Log Out</a>
+        <div style="display:flex; align-items:center; gap:1.5vw">
+            {% if current_user.is_authenticated %}
+            <h1>{{current_user.username}}</h1>
+            {% else %}
+            <h1>{{current_user.username}}</h1>
+            {% endif %}     
+            <a href="/logout">Log Out</a>
+        </div>
     </nav>
-    <div class="content">
+    <div>
         {% block content %} {% endblock %}
     </div>
 </body>

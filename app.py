@@ -46,10 +46,6 @@ class Game(db.Model):
         return f'<Title {self.title}>'
 
 
-with app.app_context():
-    db.create_all()
-
-
 """
 VIEWS
 """
@@ -114,3 +110,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("login"))
+
+
+if __name__ == '__main__':
+    db.create_all()
+    app.run()
