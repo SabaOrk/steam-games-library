@@ -94,13 +94,14 @@ def login():
             username=request.form.get("username")).first()
         # Check if the password entered is the
         # same as the user's password
-        if user.password == request.form.get("password"):
-            # Use the login_user method to log in the user
-            login_user(user)
-            flash('You were successfully logged in')
-            return redirect(url_for("index"))
-        else:
-            flash('Invalid username or password')
+        if user is not None:
+            if user.password == request.form.get("password"):
+                # Use the login_user method to log in the user
+                login_user(user)
+                flash('You were successfully logged in')
+                return redirect(url_for("index"))
+
+        flash('Invalid username or password')
         # Redirect the user back to the home
         # (we'll create the home route in a moment)
     return render_template("login.html")
